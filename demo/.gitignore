@@ -1,0 +1,7 @@
+.nextflow*
+flowchart*
+trace*
+*.sh.o*
+*.sh.e*
+report*
+timeline*
