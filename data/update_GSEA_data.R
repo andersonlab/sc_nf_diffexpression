@@ -45,6 +45,7 @@ arguments <- optparse::parse_args(parser, positional_arguments = TRUE)
 ######################## Required Packages #####################################
 suppressPackageStartupMessages(library(xml2))
 suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(tibble))
 ################################################################################
 
 ################################ Functions #####################################
@@ -129,6 +130,7 @@ for (pathway in xml2::xml_children(xml)) {
 
 
 # Save file
+gene_mtx <- tibble::rownames_to_column(gene_mtx, var='gene')
 gz_file <- gzfile(sprintf('%s/gene_set_genes.tsv.gz', output_file_base),
                   'w',
                   compression = 9)
@@ -136,7 +138,7 @@ write.table(x=gene_mtx,
             file = gz_file,
             sep='\t',
             col.names=T,
-            row.names=T,
+            row.names=F,
             quote=F)
 close(gz_file)
 
