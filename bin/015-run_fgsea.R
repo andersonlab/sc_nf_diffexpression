@@ -414,10 +414,14 @@ if (arguments$options$unsigned_ranking) {
 
 # Get annotation data
 # Subset according to `--database` args
-gene_set_genes <- read.csv(
-  arguments$options$gsets_gene_matrix,
-  sep='\t',
-  header=T
+gene_set_genes <- data.frame(
+  data.table::fread(
+    cmd = paste("gunzip -c", arguments$options$gsets_gene_matrix),
+    sep = "\t",
+    header = T,
+    stringsAsFactors = F
+  ),
+  row.names='gene'
 )
 gene_set_info <- read.csv(
   arguments$options$gsets_info_file,
