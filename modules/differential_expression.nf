@@ -489,7 +489,7 @@ process run_fgsea {
             --min_set_size ${model.min_set_size} \
             --max_set_size ${model.max_set_size} \
             --eps '${model.eps}' \
-            --gsets_gene_matrix '$baseDir/data/gene_set_gene_matrix.tsv.gz' \
+            --gsets_gene_matrix '$baseDir/data/gene_set_genes.tsv.gz' \
             --gsets_info_file '$baseDir/data/gene_set_info.tsv.gz' \
             --database '${model.database}' \
             --n_cores ${task.cpus} \
