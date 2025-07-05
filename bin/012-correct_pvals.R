@@ -146,33 +146,33 @@ if (verbose) {
 }
 
 ## Plot results
-if (verbose) {
-  print("Plotting hits per cell type...")
-}
+# if (verbose) {
+#   print("Plotting hits per cell type...")
+# }
 
-rez <- de_results %>%
-  dplyr::group_by_at(.vars = groupings) %>%
-  dplyr::group_split() %>%
-  lapply(., function(x) {
-    grouping <- sapply(groupings, function(group) {
-      paste0(group, "::", unique(x[[group]]))
-    })
-    grouping_str <- gsub("/", "_div_", paste(grouping, collapse="__"))
+# rez <- de_results %>%
+#   dplyr::group_by_at(.vars = groupings) %>%
+#   dplyr::group_split() %>%
+#   lapply(., function(x) {
+#     grouping <- sapply(groupings, function(group) {
+#       paste0(group, "::", unique(x[[group]]))
+#     })
+#     grouping_str <- gsub("/", "_div_", paste(grouping, collapse="__"))
 
-    plot <- plot_celltype_hits(
-      x,
-      "cell_label",
-      "qvalue_bh_allcelltypes",
-      fdr_threshold = 0.05
-    )
+#     plot <- plot_celltype_hits(
+#       x,
+#       "cell_label",
+#       "qvalue_bh_allcelltypes",
+#       fdr_threshold = 0.05
+#     )
 
-    ggsave(
-      sprintf("%s-celltype_hits.png", grouping_str),
-      plot = plot,
-      device = "png",
-      dpi = 320
-    )
-  })
+    # ggsave(
+    #   sprintf("%s-celltype_hits.png", grouping_str),
+    #   plot = plot,
+    #   device = "png",
+    #   dpi = 320
+    # )
+  # })
 
 if (verbose) {
   print("Done.")
